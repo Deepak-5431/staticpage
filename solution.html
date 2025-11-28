@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRADEPLUS</title>
+    <title>Solution - GRADEPLUS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
@@ -16,6 +16,7 @@
         body {
             font-family: 'Segoe UI', sans-serif;
             background-color: #f5f5f5;
+            padding-bottom: 150px;
         }
 
         .header {
@@ -45,64 +46,53 @@
             margin: 0 auto;
         }
 
-        .question-text {
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 24px;
-            line-height: 1.5;
+        .solution-box {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 16px;
         }
 
-        .options-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 100px;
-
+        .solution-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #016DAB;
+            margin-bottom: 16px;
         }
 
-        .option {
-            border: 2px solid #00bfa5;
+        .correct-answer {
+            background: #E8F5E9;
+            border-left: 4px solid #4CAF50;
             border-radius: 8px;
             padding: 16px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            background: white;
-            transition: all 0.2s;
+            margin-bottom: 16px;
         }
 
-        
-
-        .option.selected {
-            background-color: #88f9ea;
-            border-color: #00897b;
+        .answer-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4CAF50;
+            margin-bottom: 8px;
         }
 
-        .radio {
-            width: 24px;
-            height: 24px;
-            border: 2px solid black;
-            border-radius: 50%;
-            margin-right: 12px;
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        .option.selected .radio::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 12px;
-            height: 12px;
-            background: linear-gradient(135deg, #016DAB 50%, #01CB89 100%);
-            border-radius: 50%;
-        }
-
-        .option-text {
+        .answer-text {
             font-size: 15px;
             color: #333;
+        }
+
+        .explanation {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+            margin-top: 16px;
+        }
+
+        .explanation-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #016DAB;
+            margin-bottom: 8px;
         }
 
         .footer-container {
@@ -122,16 +112,7 @@
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
         }
 
-        .right-nav-button {
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .left-nav-button{
+        .right-nav-button, .left-nav-button {
             width: 32px;
             height: 32px;
             cursor: pointer;
@@ -183,32 +164,12 @@
         }
 
         .menu-item.active {
-            display: flex;
-            height: auto;
             background-color: lightgray;
         }
 
         .menu-item.active .menu-label {
             color: black;
             font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-            .menu-label {
-                font-size: 10px;
-                height: 28px;
-                margin-top: 6px;
-            }
-
-            .menu-icon {
-                padding-top: 20px;
-                width: 20px;
-                height: 20px;
-            }
-
-            .menu-item {
-                padding: 2px;
-            }
         }
     </style>
 </head>
@@ -218,58 +179,52 @@
         <div class="back-button">
             <i class='fas fa-arrow-left'></i>
         </div>
-        <h1>Help me to Solve</h1>
+        <h1>Solution</h1>
     </div>
 
     <div class="content">
-        <div class="question-text">
-            <b>Which one of the following river flows between Vindhyan and Satpura ranges? </b>
-        </div>
-
-        <div class="options-container">
-            <div class="option">
-                <div class="radio"></div>
-                <div class="option-text"><b>(A) Ganga River</b></div>
+        <div class="solution-box">
+            <div class="solution-title">Complete Solution</div>
+            
+            <div class="correct-answer">
+                <div class="answer-label">✓ Correct Answer</div>
+                <div class="answer-text"><b>None of the above options is correct.</b></div>
+                <div class="answer-text" style="margin-top: 8px;">The correct answer is: <b>Narmada River</b></div>
             </div>
 
-            <div class="option">
-                <div class="radio"></div>
-                <div class="option-text"><b>(B) Yamuna River</b></div>
-            </div>
-
-            <div class="option">
-                <div class="radio"></div>
-                <div class="option-text"><b>(C) Sarda River</b></div>
-            </div>
-
-            <div class="option">
-                <div class="radio"></div>
-                <div class="option-text"><b>(D) Brahmaputra River</b></div>
+            <div class="explanation">
+                <div class="explanation-title">Explanation:</div>
+                <p>The Narmada River flows between the Vindhyan and Satpura ranges in central India. It is one of the few major rivers in India that flows from east to west, originating from Amarkantak in Madhya Pradesh.</p>
+                <br>
+                <p>The river flows through a rift valley created between these two mountain ranges, making it geologically significant. It is approximately 1,312 km long and is considered one of the sacred rivers of India.</p>
+                <br>
+                <p><strong>Why other options are incorrect:</strong></p>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li>Ganga River - Flows through the northern plains</li>
+                    <li>Yamuna River - Tributary of Ganga, flows through northern India</li>
+                    <li>Sarda River - Flows in the Himalayan region</li>
+                    <li>Brahmaputra River - Flows through northeastern India</li>
+                </ul>
             </div>
         </div>
     </div>
 
-
-
     <div class="footer-container">
-
         <div class="step-navigation">
             <div class="right-nav-button">
                 <img src="icons/arrow.svg" alt="Previous" style="transform: scaleX(-1);">
             </div>
-
             <div class="step-text">
                 <span class="current"><b>Step 1</b></span> / Step 5
             </div>
-
             <div class="left-nav-button">
                 <img src="icons/arrow.svg" alt="Next">
             </div>
         </div>
 
         <div class="bottom-menu">
-            <div class="menu-item active" data-page="static.html">
-                <div class="menu-icon ">
+            <div class="menu-item" data-page="static.html">
+                <div class="menu-icon">
                     <img src="icons/AI Icons-2.svg" alt="Question">
                 </div>
                 <div class="menu-label"><b>Question</b></div>
@@ -296,7 +251,7 @@
                 <div class="menu-label"><b>Verify</b></div>
             </div>
 
-            <div class="menu-item" data-page="solution.html">
+            <div class="menu-item active" data-page="solution.html">
                 <div class="menu-icon">
                     <img src="icons/Group.svg" alt="Solution">
                 </div>

@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     menuItems.forEach(item => {
         item.addEventListener('click', function() {
-            menuItems.forEach(menuItem => {
-                menuItem.classList.remove('active');
-            });
-            this.classList.add('active');
+            const targetPage = this.getAttribute('data-page');
+            if (targetPage) {
+                window.location.href = targetPage;
+            }
         });
     });
 
@@ -42,7 +42,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const backButton = document.querySelector('.back-button');
-    backButton.addEventListener('click', function() {
-        console.log('Back button clicked');
-    });
+    if (backButton) {
+        backButton.addEventListener('click', function() {
+            window.history.back();
+        });
+    }
 });
