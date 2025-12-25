@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GRADEPLUS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- KaTeX for Math Rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -377,29 +381,29 @@
 
     <div class="content">
         <div class="content-section active" id="question-section">
-            <div class="question-text">
-                <b>Which one of the following river flows between Vindhyan and Satpura ranges? </b>
+            <div class="question-text" id="step-question">
+                <b>Solve the quadratic equation: \( x^2 - 7x + 3 = 0 \)</b>
             </div>
 
-            <div class="options-container">
+            <div class="options-container" id="step-options">
                 <div class="option">
                     <div class="radio"></div>
-                    <div class="option-text"><b>(A) Ganga River</b></div>
+                    <div class="option-text"><b>(A) \( x = \frac{7 \pm \sqrt{37}}{2} \)</b></div>
                 </div>
 
                 <div class="option">
                     <div class="radio"></div>
-                    <div class="option-text"><b>(B) Yamuna River</b></div>
+                    <div class="option-text"><b>(B) \( x = \frac{7 \pm \sqrt{25}}{2} \)</b></div>
                 </div>
 
                 <div class="option">
                     <div class="radio"></div>
-                    <div class="option-text"><b>(C) Sarda River</b></div>
+                    <div class="option-text"><b>(C) \( x = \frac{-7 \pm \sqrt{49}}{2} \)</b></div>
                 </div>
 
                 <div class="option">
                     <div class="radio"></div>
-                    <div class="option-text"><b>(D) Brahmaputra River</b></div>
+                    <div class="option-text"><b>(D) \( x = \frac{7 \pm \sqrt{13}}{2} \)</b></div>
                 </div>
             </div>
         </div>
@@ -465,25 +469,90 @@
             <div class="solution-box">
                 <div class="solution-title">Complete Solution</div>
 
-                <div class="correct-answer">
-                    <div class="answer-label">✓ Correct Answer</div>
-                    <div class="answer-text"><b>None of the above options is correct.</b></div>
-                    <div class="answer-text" style="margin-top: 8px;">The correct answer is: <b>Narmada River</b></div>
+                <!-- Step 1 Content -->
+                <div class="solution-step" id="solution-step-1">
+                    <div class="step-header">
+                        <h3 style="color: #016DAB; margin-bottom: 12px;">1. Identify the Type of Equation</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>The given equation is a quadratic equation in the form \( ax^2 + bx + c = 0 \), where \( a = 1 \), \( b = -7 \), and \( c = 3 \).</p>
+                    </div>
+                    <div class="related-concept-inline" style="background: #f0f8ff; padding: 12px; border-radius: 6px; margin-top: 16px; border-left: 3px solid #016DAB;">
+                        <div style="font-weight: 600; color: #016DAB; margin-bottom: 8px;">📚 Related Concept for Step 1:</div>
+                        <div style="font-size: 14px; color: #333;">
+                            <strong>Quadratic Equations:</strong> A quadratic equation is a polynomial equation of degree 2 in the form \( ax^2 + bx + c = 0 \), where \( a \neq 0 \). The coefficients \( a \), \( b \), and \( c \) are real numbers.
+                        </div>
+                    </div>
                 </div>
 
-                <div class="explanation">
-                    <div class="explanation-title">Explanation:</div>
-                    <p>The Narmada River flows between the Vindhyan and Satpura ranges in central India. It is one of the few major rivers in India that flows from east to west, originating from Amarkantak in Madhya Pradesh.</p>
-                    <br>
-                    <p>The river flows through a rift valley created between these two mountain ranges, making it geologically significant. It is approximately 1,312 km long and is considered one of the sacred rivers of India.</p>
-                    <br>
-                    <p><strong>Why other options are incorrect:</strong></p>
-                    <ul style="margin-left: 20px; margin-top: 8px;">
-                        <li>Ganga River - Flows through the northern plains</li>
-                        <li>Yamuna River - Tributary of Ganga, flows through northern India</li>
-                        <li>Sarda River - Flows in the Himalayan region</li>
-                        <li>Brahmaputra River - Flows through northeastern India</li>
-                    </ul>
+                <!-- Step 2 Content -->
+                <div class="solution-step" id="solution-step-2" style="display: none;">
+                    <div class="step-header">
+                        <h3 style="color: #016DAB; margin-bottom: 12px;">2. Apply the Quadratic Formula</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Use the quadratic formula \( x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \) to find the roots of the equation. Substitute \( a = 1 \), \( b = -7 \), and \( c = 3 \) into the formula.</p>
+                    </div>
+                    <div class="related-concept-inline" style="background: #f0f8ff; padding: 12px; border-radius: 6px; margin-top: 16px; border-left: 3px solid #016DAB;">
+                        <div style="font-weight: 600; color: #016DAB; margin-bottom: 8px;">📚 Related Concept for Step 2:</div>
+                        <div style="font-size: 14px; color: #333;">
+                            <strong>Quadratic Formula:</strong> The quadratic formula \( x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \) provides the solutions to any quadratic equation. The ± symbol indicates there are typically two solutions.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 Content -->
+                <div class="solution-step" id="solution-step-3" style="display: none;">
+                    <div class="step-header">
+                        <h3 style="color: #016DAB; margin-bottom: 12px;">3. Calculate the Discriminant</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Compute the discriminant \( b^2 - 4ac = (-7)^2 - 4 \times 1 \times 3 = 49 - 12 = 37 \).</p>
+                    </div>
+                    <div class="related-concept-inline" style="background: #f0f8ff; padding: 12px; border-radius: 6px; margin-top: 16px; border-left: 3px solid #016DAB;">
+                        <div style="font-weight: 600; color: #016DAB; margin-bottom: 8px;">📚 Related Concept for Step 3:</div>
+                        <div style="font-size: 14px; color: #333;">
+                            <strong>Discriminant:</strong> The discriminant \( \Delta = b^2 - 4ac \) determines the nature of roots. If \( \Delta > 0 \), there are two distinct real roots; if \( \Delta = 0 \), one repeated real root; if \( \Delta < 0 \), two complex roots.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 Content -->
+                <div class="solution-step" id="solution-step-4" style="display: none;">
+                    <div class="step-header">
+                        <h3 style="color: #016DAB; margin-bottom: 12px;">4. Solve for the Roots</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Substitute the values into the quadratic formula:</p>
+                        <p style="margin: 16px 0; text-align: center; font-size: 16px;">
+                            \[ x = \frac{-(-7) \pm \sqrt{37}}{2 \times 1} = \frac{7 \pm \sqrt{37}}{2} \]
+                        </p>
+                        <p>This gives two solutions: \( x_1 = \frac{7 + \sqrt{37}}{2} \) and \( x_2 = \frac{7 - \sqrt{37}}{2} \).</p>
+                    </div>
+                    <div class="related-concept-inline" style="background: #f0f8ff; padding: 12px; border-radius: 6px; margin-top: 16px; border-left: 3px solid #016DAB;">
+                        <div style="font-weight: 600; color: #016DAB; margin-bottom: 8px;">📚 Related Concept for Step 4:</div>
+                        <div style="font-size: 14px; color: #333;">
+                            <strong>Final Roots:</strong> The two roots represent the x-values where the quadratic function equals zero. These are the solutions to the original equation.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Answer -->
+                <div class="solution-step" id="solution-step-5" style="display: none;">
+                    <div class="correct-answer">
+                        <div class="answer-label">✓ Final Answer</div>
+                        <div class="answer-text" style="font-size: 18px; text-align: center; margin: 20px 0;">
+                            \[ x_1 = \frac{7 + \sqrt{37}}{2}, \quad x_2 = \frac{7 - \sqrt{37}}{2} \]
+                        </div>
+                    </div>
+                    <div class="explanation">
+                        <div class="explanation-title">Summary:</div>
+                        <p>We solved the quadratic equation \( x^2 - 7x + 3 = 0 \) using the quadratic formula. The discriminant of 37 indicates two distinct real roots. The solutions can be approximated as:</p>
+                        <ul style="margin-left: 20px; margin-top: 8px;">
+                            <li>\( x_1 \approx 6.54 \)</li>
+                            <li>\( x_2 \approx 0.46 \)</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -496,7 +565,7 @@
             </div>
 
             <div class="step-text">
-                <span class="current"><b>Step 1</b></span> / Step 5
+                <span class="current"><b>Step 0</b></span> / Step 5
             </div>
 
             <div class="left-nav-button">
