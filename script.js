@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     const menuItems = document.querySelectorAll('.menu-item');
     const backButton = document.querySelector('.back-button');
@@ -10,15 +11,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const titles = ['Help me to Solve', 'Related Concepts', 'Hint', 'Verify Answer', 'Solution'];
     let currentIndex = 0;
     let currentSolutionStep = 1;
-    let currentQuestionStep = 0; // Track which question step (0-5) we're on
-    const totalSolutionSteps = 5;
+    let currentQuestionStep = 0; 
     const totalQuestionSteps = 5;
 
-    // Step content data
     const stepData = [
         {
             question: '<b>Solve the quadratic equation: \\( x^2 - 7x + 3 = 0 \\)</b>',
-            isOptionsStep: true // This step shows options, not content
+            isOptionsStep: true,
+            options: [
+                '\\( x = \\frac{7 \\pm \\sqrt{37}}{2} \\)',
+                '\\( x = \\frac{7 \\pm \\sqrt{25}}{2} \\)',
+                '\\( x = \\frac{-7 \\pm \\sqrt{49}}{2} \\)',
+                '\\( x = \\frac{7 \\pm \\sqrt{13}}{2} \\)'
+            ]
         },
         {
             question: '<b>Step 1: Identify the Type of Equation</b>',
@@ -42,9 +47,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-    // Related concepts for each step
     const relatedConceptsData = [
-        [], // Step 0 - no related concepts
+        [], 
         [
             {
                 title: 'Quadratic Equations',
@@ -77,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
         ]
     ];
 
-    // Render math equations using KaTeX
     function renderMath() {
         if (typeof renderMathInElement !== 'undefined') {
             renderMathInElement(document.body, {
@@ -92,7 +95,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Update question step
     function updateQuestionStep(stepNum) {
         currentQuestionStep = stepNum;
         const questionText = document.getElementById('step-question');
@@ -101,29 +103,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (questionText && stepData[stepNum]) {
             questionText.innerHTML = stepData[stepNum].question;
             
-            // If it's Step 0, show options; otherwise show content
-            if (stepData[stepNum].isOptionsStep) {
-                // Restore original options for Step 0
-                stepOptions.innerHTML = `<div class="option">
-                    <div class="radio"></div>
-                    <div class="option-text"><b>(A) \\( x = \\frac{7 \\pm \\sqrt{37}}{2} \\)</b></div>
-                </div>
-
-                <div class="option">
-                    <div class="radio"></div>
-                    <div class="option-text"><b>(B) \\( x = \\frac{7 \\pm \\sqrt{25}}{2} \\)</b></div>
-                </div>
-
-                <div class="option">
-                    <div class="radio"></div>
-                    <div class="option-text"><b>(C) \\( x = \\frac{-7 \\pm \\sqrt{49}}{2} \\)</b></div>
-                </div>
-
-                <div class="option">
-                    <div class="radio"></div>
-                    <div class="option-text"><b>(D) \\( x = \\frac{7 \\pm \\sqrt{13}}{2} \\)</b></div>
-                </div>`;
-                // Re-attach click handlers
+            if (stepData[stepNum].isOptionsStep && stepData[stepNum].options) {
+                stepOptions.innerHTML = stepData[stepNum].options.map((opt, i) => 
+                    `<div class="option">
+                        <div class="radio"></div>
+                        <div class="option-text"><b>(${String.fromCharCode(65 + i)}) ${opt}</b></div>
+                    </div>`
+                ).join('');
+                
                 const options = stepOptions.querySelectorAll('.option');
                 if (options) {
                     options.forEach(option => {
@@ -134,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
             } else {
-                // Show content for Steps 1-5
                 stepOptions.innerHTML = stepData[stepNum].content;
             }
         }
@@ -142,13 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
         renderMath();
     }
 
-    // Show solution step
-    function showSolutionStep(stepNumber) {
-        // Solution is now a simple single solution, no steps needed
-        renderMath();
-    }
 
-    // Show related concepts for current step
     function showDynamicRelatedConcepts() {
         const concepts = relatedConceptsData[currentQuestionStep] || [];
         const conceptsContainer = document.getElementById('related-concepts-section');
@@ -191,16 +171,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (headerTitle) headerTitle.textContent = titles[index];
         
-        // Update step text based on section
+        const stepLabel = document.querySelector('.step-label');
+        
         if (sections[index] === 'solution') {
             if (stepText) stepText.innerHTML = `<b>Solution</b>`;
+            if (stepLabel) stepLabel.style.display = 'none';
             showSolutionStep(currentSolutionStep);
+        } else if (sections[index] === 'question') {
+            if (stepLabel) stepLabel.style.display = 'inline';
+            if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
         } else if (sections[index] === 'related-concepts') {
-            // Show related concepts for the current question step
+            if (stepLabel) stepLabel.style.display = 'inline';
             showDynamicRelatedConcepts();
             if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
         } else {
-            if (stepText) stepText.innerHTML = `<b>Step ${index}</b>`;
+            if (stepLabel) stepLabel.style.display = 'inline';
+            if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
         }
 
         currentIndex = index;
@@ -229,23 +215,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (leftNavButton) {
         leftNavButton.addEventListener('click', function() {
-            if (sections[currentIndex] === 'solution') {
-                if (currentSolutionStep < totalSolutionSteps) {
-                    currentSolutionStep++;
-                    showSolutionStep(currentSolutionStep);
-                    if (stepText) stepText.innerHTML = `<b>Step ${currentSolutionStep}</b>`;
-                } else if (currentIndex < sections.length - 1) {
-                    currentIndex++;
-                    showSection(currentIndex);
-                }
-            } else if (sections[currentIndex] === 'question') {
-                // Navigate through question steps
+            if (sections[currentIndex] === 'question') {
                 if (currentQuestionStep < totalQuestionSteps) {
                     updateQuestionStep(currentQuestionStep + 1);
                     if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
-                } else if (currentIndex < sections.length - 1) {
-                    currentIndex++;
-                    showSection(currentIndex);
                 }
             } else {
                 if (currentIndex < sections.length - 1) {
@@ -257,23 +230,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (rightNavButton) {
         rightNavButton.addEventListener('click', function() {
-            if (sections[currentIndex] === 'solution') {
-                if (currentSolutionStep > 1) {
-                    currentSolutionStep--;
-                    showSolutionStep(currentSolutionStep);
-                    if (stepText) stepText.innerHTML = `<b>Step ${currentSolutionStep}</b>`;
-                } else if (currentIndex > 0) {
-                    currentIndex--;
-                    showSection(currentIndex);
-                }
-            } else if (sections[currentIndex] === 'question') {
-                // Navigate through question steps
+            if (sections[currentIndex] === 'question') {
                 if (currentQuestionStep > 0) {
                     updateQuestionStep(currentQuestionStep - 1);
                     if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
-                } else if (currentIndex > 0) {
-                    currentIndex--;
-                    showSection(currentIndex);
                 }
             } else {
                 if (currentIndex > 0) {
@@ -285,24 +245,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('keydown', function(e) {
         if (e.key === 'ArrowLeft') {
-            if (sections[currentIndex] === 'solution' && currentSolutionStep > 1) {
-                currentSolutionStep--;
-                showSolutionStep(currentSolutionStep);
-                if (stepText) stepText.innerHTML = `<b>Step ${currentSolutionStep}</b>`;
-            } else if (sections[currentIndex] === 'question' && currentQuestionStep > 0) {
-                updateQuestionStep(currentQuestionStep - 1);
-                if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
+            if (sections[currentIndex] === 'question') {
+                if (currentQuestionStep > 0) {
+                    updateQuestionStep(currentQuestionStep - 1);
+                    if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
+                }
             } else if (currentIndex > 0) {
                 showSection(currentIndex - 1);
             }
         } else if (e.key === 'ArrowRight') {
-            if (sections[currentIndex] === 'solution' && currentSolutionStep < totalSolutionSteps) {
-                currentSolutionStep++;
-                showSolutionStep(currentSolutionStep);
-                if (stepText) stepText.innerHTML = `<b>Step ${currentSolutionStep}</b>`;
-            } else if (sections[currentIndex] === 'question' && currentQuestionStep < totalQuestionSteps) {
-                updateQuestionStep(currentQuestionStep + 1);
-                if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
+            if (sections[currentIndex] === 'question') {
+                if (currentQuestionStep < totalQuestionSteps) {
+                    updateQuestionStep(currentQuestionStep + 1);
+                    if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
+                }
+               
             } else if (currentIndex < sections.length - 1) {
                 showSection(currentIndex + 1);
             }
