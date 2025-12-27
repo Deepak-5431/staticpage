@@ -220,6 +220,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     updateQuestionStep(currentQuestionStep + 1);
                     if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
                 }
+            } else if (['related-concepts', 'hint', 'verify', 'solution'].includes(sections[currentIndex])) {
+                currentQuestionStep = 0;
+                showSection(0);
+                updateQuestionStep(0);
             } else {
                 if (currentIndex < sections.length - 1) {
                     showSection(currentIndex + 1);
@@ -235,6 +239,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     updateQuestionStep(currentQuestionStep - 1);
                     if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
                 }
+            } else if (['related-concepts', 'hint', 'verify', 'solution'].includes(sections[currentIndex])) {
+                currentQuestionStep = 0;
+                showSection(0);
+                updateQuestionStep(0);
             } else {
                 if (currentIndex > 0) {
                     showSection(currentIndex - 1);
@@ -245,21 +253,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('keydown', function(e) {
         if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
             if (sections[currentIndex] === 'question') {
                 if (currentQuestionStep > 0) {
                     updateQuestionStep(currentQuestionStep - 1);
                     if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
                 }
+            } else if (sections[currentIndex] === 'solution') {
+                currentQuestionStep = 0;
+                showSection(0);
+                updateQuestionStep(0);
+                if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
+            } else if (['related-concepts', 'hint', 'verify'].includes(sections[currentIndex])) {
+                currentQuestionStep = 0;
+                showSection(0);
+                updateQuestionStep(0);
+                if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
             } else if (currentIndex > 0) {
                 showSection(currentIndex - 1);
             }
         } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
             if (sections[currentIndex] === 'question') {
                 if (currentQuestionStep < totalQuestionSteps) {
                     updateQuestionStep(currentQuestionStep + 1);
                     if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
                 }
                
+            } else if (sections[currentIndex] === 'solution') {
+                currentQuestionStep = 0;
+                showSection(0);
+                updateQuestionStep(0);
+                if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
+            } else if (['related-concepts', 'hint', 'verify'].includes(sections[currentIndex])) {
+                currentQuestionStep = 0;
+                showSection(0);
+                updateQuestionStep(0);
+                if (stepText) stepText.innerHTML = `<b>Step ${currentQuestionStep}</b>`;
             } else if (currentIndex < sections.length - 1) {
                 showSection(currentIndex + 1);
             }
@@ -280,4 +310,9 @@ function verifyAnswer() {
     if (resultBox) {
         resultBox.classList.add('show');
     }
+}
+
+function showSolutionStep(stepNum) {
+    // This function displays the solution step content
+    // For now, it's a placeholder to prevent undefined errors
 }
